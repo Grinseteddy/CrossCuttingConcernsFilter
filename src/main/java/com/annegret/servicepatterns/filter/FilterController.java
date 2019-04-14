@@ -7,9 +7,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RefreshScope
@@ -23,8 +21,9 @@ public class FilterController {
     @Value("${index}")
     private String index;
 
-    @GetMapping(value ="filter")
-    public String filtered(@RequestParam("inputString") String inputString) {
+    @GetMapping(value = "/filter/{inputString}")
+    @ResponseBody
+    public String filtered(@PathVariable("inputString") String inputString) {
         String returnString = filter(inputString)+" "+index;
         logger.info(inputString+" --> "+returnString);
         return returnString;
