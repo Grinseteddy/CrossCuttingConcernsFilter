@@ -21,4 +21,4 @@ Build docker image
 Run with docker
 ---
 
-	docker run -p 8084:8084 filter:latest
+	docker run --network=host -p 8084:8084 filter:latest
