@@ -16,30 +16,21 @@ import org.springframework.web.bind.annotation.*;
 @Configuration
 public class FilterController {
 
-    static Logger logger=LoggerFactory.getLogger(FilterController.class);
+    private static Logger logger = LoggerFactory.getLogger(FilterController.class);
 
     @Value("${index}")
     private String index;
 
     @GetMapping(value = "/filter/{inputString}")
     @ResponseBody
-    public String filtered(@PathVariable("inputString") String inputString) {
-        String returnString = filter(inputString)+" "+index;
-        logger.info(inputString+" --> "+returnString);
-        return returnString;
+    public String filtered(@PathVariable("inputString") String input) {
+        String filteredInput = filter(input) + " " + index;
+        logger.info(input + "--> " + filteredInput);
+        return filteredInput;
     }
 
-    private String filter(String inputString) {
-
-        if (inputString.length()>0) {
-
-            String filterString = inputString.replaceAll("A","");
-
-            return String.valueOf(filterString);
-
-        }
-
-        return "";
+    private String filter(String input) {
+        return input.replaceAll("A","");
     }
 
 }

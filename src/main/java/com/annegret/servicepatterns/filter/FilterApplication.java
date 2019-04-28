@@ -7,18 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FilterApplication {
 
-    @Value("${index:1}")
-    private int index;
-
     public static void main(String[] args) {
         SpringApplication.run(FilterApplication.class, args);
     }
 
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-    public int getIndex() {
-        return index;
-    }
 }
